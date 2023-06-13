@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:50:34 by jciapova          #+#    #+#             */
-/*   Updated: 2023/06/13 12:24:22 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/06/13 18:13:44 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,41 +85,48 @@ char	**ft_split(char const *s, char c)
 	return (str);
 }
 
+void	put_images(t_program *start, int x, int y)
+{
+	start->img_wall = mlx_xpm_file_to_image(start->mlx, WALL, &start->img_width, &start->img_height);
+	start->img_player = mlx_xpm_file_to_image(start->mlx, PLAYER, &start->img_width, &start->img_height);
+	start->img_collectible = mlx_xpm_file_to_image(start->mlx, COLLECTIBLE, &start->img_width, &start->img_height);
+	start->img_exit = mlx_xpm_file_to_image(start->mlx, EXIT, &start->img_width, &start->img_height);
+	
+	while (start->map_data[y][x])
+	{
+		if (start->map_data[y][x] == '1')
+			mlx_put_image_to_window(start->mlx, start->win, start->img_wall, x*60, y*60);
+		else if (start->map_data[y][x] == 'P')
+			mlx_put_image_to_window(start->mlx, start->win, start->img_player, x*60, y*60);
+		else if (start->map_data[y][x] == 'C')
+			mlx_put_image_to_window(start->mlx, start->win, start->img_collectible, x*60, y*60);
+		else if (start->map_data[y][x] == 'E')
+			mlx_put_image_to_window(start->mlx, start->win, start->img_exit, x*60, y*60);
+		x++;
+	}
+}
+
 void	draw_map(t_program *start)
 {
 	int			y;
 	int			x;
-	printf("g\n");
 	y = 0;
-	start->img = mlx_xpm_file_to_image(start->mlx, WALL, &start->img_width, &start->img_height);
 	while (start->map_data[y])
 	{
 		x = 0;
-		printf("Hello\n");
-		while (start->map_data[y][x])
-		{
-			if (start->map_data[y][x] == '1')
-				mlx_put_image_to_window(start->mlx, start->win, start->img, x*40, y*40);
-			x++;
-		}
+		put_images(start, x, y);
 		y++;
 	}
 }
 
-int	main(int argc, char **argv)
+void	start_map(char *argv, t_program *start)
 {
-	t_program	start;
 	int		fd;
 	char		*line;
 	char		*all_lines;
 	char		*temp;
 
-	if (argc != 2)
-		return (0);
-	start.mlx = mlx_init();
-	start.win = mlx_new_window(start.mlx, 600, 600, "So Long");
-	
-	fd = open(argv[1], O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	all_lines = "";
 	while (1)
 	{
@@ -131,10 +138,23 @@ int	main(int argc, char **argv)
 		free(line);
 	}
 	close(fd);
-	start.map_data = ft_split(all_lines, '\n');
-	free(all_lines);
-	printf("Hello\n");
-	draw_map(&start);
-	mlx_loop(start.mlx);
+	start->map_data = ft_split(all_lines, '\n');
+	free(all_lines);	
+}
+
+int	main(int argc, char **argv)
+{
+	t_program	start;
+	
+	if (argc != 2)
+		return (0);
+	else
+	{
+		start.mlx = mlx_init();
+		start.win = mlx_new_window(start.mlx, 1000, 1000, "So Long");
+		start_map(argv[1], &start);
+		draw_map(&start);
+		mlx_loop(start.mlx);
+	}
 	return (0);
 }
