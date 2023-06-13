@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:50:34 by jciapova          #+#    #+#             */
-/*   Updated: 2023/06/11 18:47:41 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:24:22 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,17 @@ void	draw_map(t_program *start)
 {
 	int			y;
 	int			x;
-	
+	printf("g\n");
 	y = 0;
 	start->img = mlx_xpm_file_to_image(start->mlx, WALL, &start->img_width, &start->img_height);
 	while (start->map_data[y])
 	{
 		x = 0;
-		printf("Hello");
+		printf("Hello\n");
 		while (start->map_data[y][x])
 		{
 			if (start->map_data[y][x] == '1')
-				mlx_put_image_to_window(start->mlx, start->win, start->img, y*40, x*40);
+				mlx_put_image_to_window(start->mlx, start->win, start->img, x*40, y*40);
 			x++;
 		}
 		y++;
@@ -124,6 +124,8 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		line = get_next_line(fd);
+		if (line == NULL)
+			break;
 		temp = all_lines;
 		all_lines = ft_strjoin(temp, line);
 		free(line);
@@ -131,6 +133,7 @@ int	main(int argc, char **argv)
 	close(fd);
 	start.map_data = ft_split(all_lines, '\n');
 	free(all_lines);
+	printf("Hello\n");
 	draw_map(&start);
 	mlx_loop(start.mlx);
 	return (0);

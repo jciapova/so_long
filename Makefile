@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+         #
+#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 17:17:38 by jciapova          #+#    #+#              #
-#    Updated: 2023/06/11 17:23:55 by jciapova         ###   ########.fr        #
+#    Updated: 2023/06/13 12:29:49 by ubuntu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,4 +40,4 @@ clean:
 fclean:	clean
 	$(RM) $(NAME)
 
-re:	fclean all bonus
+re:	fclean all
