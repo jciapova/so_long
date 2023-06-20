@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:50:34 by jciapova          #+#    #+#             */
-/*   Updated: 2023/06/13 18:13:44 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:31:02 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,11 @@ void	put_images(t_program *start, int x, int y)
 	start->img_player = mlx_xpm_file_to_image(start->mlx, PLAYER, &start->img_width, &start->img_height);
 	start->img_collectible = mlx_xpm_file_to_image(start->mlx, COLLECTIBLE, &start->img_width, &start->img_height);
 	start->img_exit = mlx_xpm_file_to_image(start->mlx, EXIT, &start->img_width, &start->img_height);
+	start->img_tile = mlx_xpm_file_to_image(start->mlx, TILE, &start->img_width, &start->img_height);
 	
 	while (start->map_data[y][x])
 	{
+		mlx_put_image_to_window(start->mlx, start->win, start->img_tile, x*60, y*60);
 		if (start->map_data[y][x] == '1')
 			mlx_put_image_to_window(start->mlx, start->win, start->img_wall, x*60, y*60);
 		else if (start->map_data[y][x] == 'P')
@@ -142,6 +144,64 @@ void	start_map(char *argv, t_program *start)
 	free(all_lines);	
 }
 
+void	map_size(t_program *start)
+{
+	int	i;
+	
+	start->map_size_x = 0;
+	start->map_size_y = 0;
+	i = 0;
+	while (start->map_data[0][i])
+	{
+		start->map_size_x++;
+		i++;
+	}
+	i = 0;
+	while (start->map_data[i])
+	{
+		start->map_size_y++;
+		i++;
+	}
+
+}
+
+void	player_position(t_program *start)
+{
+	int	x;
+	int	y;
+
+
+	y = 0;
+	x = 0;
+	while (start->map_data[y])
+	{
+		x = 0;
+		while (start->map_data[y][x])
+		{
+			if (start->map_data[y][x] == 'P')
+			{
+				start->player_position_x = x;
+				start->player_position_y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+int	close_window(int key, t_program *start)
+{
+	if (key == 65307)
+		mlx_destroy_window(start->mlx, start->win);
+	if (key == 119)
+	{
+		player_position(start);
+		mlx_put_image_to_window(start->mlx, start->win, start->img_tile, start->player_position_x * 60, start->player_position_y * 60);
+		mlx_put_image_to_window(start->mlx, start->win, start->img_player, start->player_position_x * 60, (start->player_position_y - 1) * 60);
+	}
+	return(0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_program	start;
@@ -151,9 +211,11 @@ int	main(int argc, char **argv)
 	else
 	{
 		start.mlx = mlx_init();
-		start.win = mlx_new_window(start.mlx, 1000, 1000, "So Long");
 		start_map(argv[1], &start);
+		map_size(&start);
+		start.win = mlx_new_window(start.mlx, start.map_size_x * 60, start.map_size_y * 60, "So Long");
 		draw_map(&start);
+		mlx_hook(start.win, 2, 1L<<0, close_window, &start);
 		mlx_loop(start.mlx);
 	}
 	return (0);

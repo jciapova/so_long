@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:08:13 by jciapova          #+#    #+#             */
-/*   Updated: 2023/06/13 18:07:27 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:44:17 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define PLAYER "./assets/player1.xpm"
 # define COLLECTIBLE "./assets/dragon.xpm"
 # define EXIT "./assets/gate.xpm"
-# define GRASS "./assets/grass.xpm"
+# define TILE "./assets/grass.xpm"
 
 typedef struct  s_program
 {
@@ -36,6 +36,10 @@ typedef struct  s_program
     char    **map_data;
     int     img_height;
     int     img_width;
+    int     map_size_x;
+    int     map_size_y;
+    int     player_position_x;
+    int     player_position_y;
 }   	t_program;
 
 typedef struct	s_game_map
