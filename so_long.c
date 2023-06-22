@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:50:34 by jciapova          #+#    #+#             */
-/*   Updated: 2023/06/21 18:11:55 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:34:01 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,10 +189,45 @@ void	player_position(t_program *start)
 	}
 }
 
-void	new_player_position_w_s(t_program *start, char key, int x, int y)
+// void	new_player_position_w_s(t_program *start, char key, int x, int y)
+// {
+// 	char	update;
+
+// 	if (key == 'w' && start->map_data[y - 1][x] != '1')
+// 	{
+// 		update = start->map_data[y][x];
+// 		start->map_data[y][x] = start->map_data[y - 1][x];
+// 		start->map_data[y - 1][x] = update;
+// 	}
+// 	if (key == 's' && start->map_data[y + 1][x] != '1')
+// 	{
+// 		update = start->map_data[y][x];
+// 		start->map_data[y][x] = start->map_data[y + 1][x];
+// 		start->map_data[y + 1][x] = update;
+// 	}
+// }
+
+void	new_player_position(t_program *start, char key)
 {
+	int	x;
+	int	y;
 	char	update;
 
+	x = start->player_position_x;
+	y = start->player_position_y;
+	//new_player_position_w_s(start, key, x, y);
+	if (key == 'a' && start->map_data[y][x - 1] != '1')
+	{
+		update = start->map_data[y][x];
+		start->map_data[y][x] = start->map_data[y][x - 1];
+		start->map_data[y][x - 1] = update;
+	}
+	if (key == 'd' && start->map_data[y][x + 1] != '1')
+	{
+		update = start->map_data[y][x];
+		start->map_data[y][x] = start->map_data[y][x + 1];
+		start->map_data[y][x + 1] = update;
+	}
 	if (key == 'w' && start->map_data[y - 1][x] != '1')
 	{
 		update = start->map_data[y][x];
@@ -207,57 +242,42 @@ void	new_player_position_w_s(t_program *start, char key, int x, int y)
 	}
 }
 
-void	new_player_position(t_program *start, char key)
-{
-	int	x;
-	int	y;
-	char	update;
-
-	x = start->player_position_x;
-	y = start->player_position_y;
-	new_player_position_w_s(start, key, x, y);
-	if (key == 'a' && start->map_data[y][x - 1] != '1')
-	{
-		update = start->map_data[y][x];
-		start->map_data[y][x] = start->map_data[y][x - 1];
-		start->map_data[y][x - 1] = update;
-	}
-	if (key == 'd' && start->map_data[y][x + 1] != '1')
-	{
-		update = start->map_data[y][x];
-		start->map_data[y][x] = start->map_data[y][x + 1];
-		start->map_data[y][x + 1] = update;
-	}
-}
-
 int	move_player(int key, t_program *start)
 {
+	int x;
+	int y;
+
+	player_position(start);
+	x = start->player_position_x;
+	y = start->player_position_y;
+	printf("%d\n", start->player_position_x);
+	printf("%d\n", start->player_position_y);
 	if (key == 65307)
 		mlx_destroy_window(start->mlx, start->win);
-	if (key == 'w')
+	if (key == 'w' && start->map_data[y - 1][x] != '1')
 	{
-		player_position(start);
+		//player_position(start);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_tile, start->player_position_x * 60, start->player_position_y * 60);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_player, start->player_position_x * 60, (start->player_position_y - 1) * 60);
 		new_player_position(start, 'w');
 	}
-	if (key == 's')
+	if (key == 's' && start->map_data[y + 1][x] != '1')
 	{
-		player_position(start);
+		//player_position(start);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_tile, start->player_position_x * 60, start->player_position_y * 60);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_player, start->player_position_x * 60, (start->player_position_y + 1) * 60);
 		new_player_position(start, 's');
 	}
-	if (key == 'a')
+	if (key == 'a' && start->map_data[y][x - 1] != '1')
 	{
-		player_position(start);
+		//player_position(start);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_tile, start->player_position_x * 60, start->player_position_y * 60);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_player, (start->player_position_x - 1) * 60, start->player_position_y * 60);
 		new_player_position(start, 'a');
 	}
-	if (key == 'd')
+	if (key == 'd' && start->map_data[y][x + 1] != '1')
 	{
-		player_position(start);
+		//player_position(start);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_tile, start->player_position_x * 60, start->player_position_y * 60);
 		mlx_put_image_to_window(start->mlx, start->win, start->img_player, (start->player_position_x + 1) * 60, start->player_position_y * 60);
 		new_player_position(start, 'd');
