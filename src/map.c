@@ -6,12 +6,11 @@
 /*   By: janka <janka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:07:36 by janka             #+#    #+#             */
-/*   Updated: 2023/07/05 13:11:28 by janka            ###   ########.fr       */
+/*   Updated: 2023/07/06 14:31:17 by janka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft/libft.h"
 
 void	put_images(t_program *start, int x, int y)
 {

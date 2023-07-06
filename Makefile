@@ -6,7 +6,7 @@
 #    By: janka <janka@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 17:17:38 by jciapova          #+#    #+#              #
-#    Updated: 2023/07/05 13:10:02 by janka            ###   ########.fr        #
+#    Updated: 2023/07/06 14:31:21 by janka            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC	= cc -Wall -Wextra -Werror
 RM	= rm -f
 
 SRCSOLONG =	./get_next_line/get_next_line.c \
-			so_long.c player_moves.c player_position.c map.c
+			./src/so_long.c ./src/player_moves.c ./src/player_position.c ./src/map.c ./src/check_map.c 
 NAME = so_long
 
 all:	$(NAME)
