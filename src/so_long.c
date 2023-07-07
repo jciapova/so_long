@@ -6,7 +6,7 @@
 /*   By: janka <janka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:50:34 by jciapova          #+#    #+#             */
-/*   Updated: 2023/07/06 14:31:13 by janka            ###   ########.fr       */
+/*   Updated: 2023/07/07 16:23:09 by janka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include "../libft/libft.h"
 
-// TO DO = flood fill, bonus?
+// TO DO = flood fill
 
 int	close_window()
 {

@@ -6,7 +6,7 @@
 /*   By: janka <janka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:08:13 by jciapova          #+#    #+#             */
-/*   Updated: 2023/07/06 14:31:19 by janka            ###   ########.fr       */
+/*   Updated: 2023/07/07 16:23:16 by janka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct  s_program
     int		exit_count;
 }   	t_program;
 
-int	move_player(int key, t_program *start);
-int	close_window();
+int	    move_player(int key, t_program *start);
+int	    close_window();
 void	move_w(t_program *start, int x, int y);
 void	move_a(t_program *start, int x, int y);
 void	move_s(t_program *start, int x, int y);
