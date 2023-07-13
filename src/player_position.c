@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_position.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janka <janka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 12:54:19 by janka             #+#    #+#             */
-/*   Updated: 2023/07/06 14:31:19 by janka            ###   ########.fr       */
+/*   Updated: 2023/07/13 20:06:00 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	player_position(t_program *start)
 {
 	int	x;
 	int	y;
-
 
 	y = 0;
 	x = 0;
@@ -56,8 +55,8 @@ void	new_player_position_w_s(t_program *start, char key, int x, int y)
 
 void	new_player_position(t_program *start, char key)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	update;
 
 	x = start->player_position_x;

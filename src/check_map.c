@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janka <janka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 12:52:11 by janka             #+#    #+#             */
-/*   Updated: 2023/07/06 14:31:16 by janka            ###   ########.fr       */
+/*   Updated: 2023/07/13 20:31:56 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	check_player(t_program *start)
 	int	x;
 	int	y;
 
-
 	y = 0;
 	x = 0;
 	while (start->map_data[y])
@@ -68,7 +67,6 @@ void	check_exit(t_program *start)
 	int	x;
 	int	y;
 
-
 	y = 0;
 	x = 0;
 	while (start->map_data[y])
@@ -93,7 +91,6 @@ void	check_if_empty(t_program *start)
 {
 	int	x;
 	int	y;
-
 
 	y = 0;
 	x = 0;
@@ -121,4 +118,6 @@ void	check_map(t_program *start)
 	check_player(start);
 	check_collectibles(start);
 	check_exit(start);
+	check_walls(start);
 }
+

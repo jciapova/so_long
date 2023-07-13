@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janka <janka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:50:34 by jciapova          #+#    #+#             */
-/*   Updated: 2023/07/07 16:23:09 by janka            ###   ########.fr       */
+/*   Updated: 2023/07/13 20:06:01 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@
 
 // TO DO = flood fill
 
-int	close_window()
+int	mouse_hook(void)
 {
 	exit(0);
-	return(0);
+	return (0);
+}
+
+int	close_window(void)
+{
+	exit(0);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_program	start;
-	
+
 	if (argc != 2)
 		return (0);
 	else
@@ -38,11 +44,12 @@ int	main(int argc, char **argv)
 		start.mlx = mlx_init();
 		start_map(argv[1], &start);
 		map_size(&start);
-		start.win = mlx_new_window(start.mlx, start.map_size_x * 60, start.map_size_y * 60, "So Long");
+		start.win = mlx_new_window(start.mlx, start.map_size_x * 60, \
+		start.map_size_y * 60, "So Long");
 		draw_map(&start);
 		check_map(&start);
-		mlx_hook(start.win, 2, 1L<<0, move_player, &start);
-		mlx_hook(start.win, 17, 1L<<2, close_window, &start);
+		mlx_hook(start.win, 2, 1L << 0, move_player, &start);
+		mlx_hook(start.win, 17, 1L << 2, close_window, &start);
 		mlx_loop(start.mlx);
 	}
 	return (0);
