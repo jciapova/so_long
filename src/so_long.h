@@ -6,7 +6,7 @@
 /*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:08:13 by jciapova          #+#    #+#             */
-/*   Updated: 2023/07/13 20:29:48 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:43:50 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	new_player_position(t_program *start, char key);
 void	new_player_position_w_s(t_program *start, char key, int x, int y);
 void	put_images(t_program *start, int x, int y);
 void	draw_map(t_program *start);
-void	start_map(char *argv, t_program *start);
+void	open_map(char *argv, t_program *start);
 void	map_size(t_program *start);
 void	check_collectibles(t_program *start);
 void	check_player(t_program *start);
@@ -70,5 +70,11 @@ void	check_map(t_program *start);
 void	check_if_empty(t_program *start);
 void	put_images_extra(t_program *start, int x, int y);
 void	check_walls(t_program *start);
+void	mlx_hooks(t_program *start);
+void	arg_check(int argc);
+void	path_check(t_program *start);
+bool	check_valid_path(t_program *start);
+bool	flood_fill(t_program *start, int x, int y);
+void	ber_check(char *argv);
 
 #endif

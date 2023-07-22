@@ -6,7 +6,7 @@
 /*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 12:52:11 by janka             #+#    #+#             */
-/*   Updated: 2023/07/13 20:31:56 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:03:30 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,3 @@ void	check_map(t_program *start)
 	check_exit(start);
 	check_walls(start);
 }
-

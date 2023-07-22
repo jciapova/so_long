@@ -6,7 +6,7 @@
 /*   By: jciapova <jciapova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:07:36 by janka             #+#    #+#             */
-/*   Updated: 2023/07/13 20:05:58 by jciapova         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:59:44 by jciapova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	draw_map(t_program *start)
 	}
 }
 
-void	start_map(char *argv, t_program *start)
+void	open_map(char *argv, t_program *start)
 {
 	int		fd;
 	char	*line;
